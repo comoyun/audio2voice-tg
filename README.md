@@ -50,13 +50,13 @@ Use your distribution’s package manager to install `ffmpeg`:
 
 1. Convert and send an audio file:
    ```bash
-   npm start <audiofile>
+   npm start <token> <chat_id> <audio_file_path>
    ```
 
 ## Example
 
 ```bash
-npm start audio.mp3
+npm start 1234567890:AAGBBCCddeeffgghh-IIJJkKLLmmnN-OO00 5321012345 audio.mp3 
 ```
 
 ## Note
