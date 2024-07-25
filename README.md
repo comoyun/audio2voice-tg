@@ -1,13 +1,14 @@
 # audio2voice-tg
 
-Converts an audio file to OGG format and sends it as a voice message via a Telegram bot.
+Converts an audio file to OGG format and sends it as a voice message through a Telegram bot.
 
 <img src="https://github.com/user-attachments/assets/1c1eac35-0040-4ce0-8545-fb881b209d89" width="600">
 
 ## Requirements
 
 - Node.js
-- `ffmpeg` 
+- `ffmpeg`
+- Telegram bot token and chat ID
 
 Use your distribution’s package manager to install `ffmpeg`:
 
@@ -56,7 +57,7 @@ Use your distribution’s package manager to install `ffmpeg`:
 ## Example
 
 ```bash
-npm start 1234567890:AAGBBCCddeeffgghh-IIJJkKLLmmnN-OO00 5321012345 audio.mp3 
+npm start 1234567890:AABBCCDDEEFF-0000 5321012345 audio.mp3 
 ```
 
 ## Note
