@@ -1,0 +1,16 @@
+{
+  "name": "audio2voice-tg",
+  "version": "1.0.0",
+  "description": "Converts audio files to OGG format and sends them as voice messages via a Telegram bot.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "form-data": "^4.0.0",
+    "fluent-ffmpeg": "^2.1.2"
+  },
+  "author": "Khumoyun",
+  "license": "MIT"
+}
