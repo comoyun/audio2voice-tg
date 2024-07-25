@@ -3,22 +3,30 @@ const path = require('path');
 const axios = require('axios');
 const FormData = require('form-data');
 const ffmpeg = require('fluent-ffmpeg');
+const readline = require('readline');
 
-// Put your bot token and chat id
-const token = 'BOT_TOKEN';
-const chatId = 'CHAT_ID';
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
-if (process.argv.length <= 2) {
-    console.log("Usage: node sendVoice.js filename");
-    console.log("\te.g.");
-    console.log("\tnode sendVoice.js audio.mp3");
-    process.exit(1);
-}
+const prompt = (question) => {
+    return new Promise((resolve) => {
+        rl.question(question, (answer) => resolve(answer));
+    });
+};
 
-const inputFilePath = process.argv[2];
-const outputFilePath = path.join(__dirname, 'audio.ogg');
+const getInput = async () => {
+    let token = process.env.BOT_TOKEN || process.argv[2] || await prompt('Enter your Telegram bot token: ');
+    let chatId = process.env.CHAT_ID || process.argv[3] || await prompt('Enter your Telegram chat ID: ');
+    let inputFilePath = process.argv[4] || await prompt('Enter the path to the audio file: ');
 
-const sendVoiceMessage = async (chatId, filePath) => {
+    rl.close();
+
+    return { token, chatId, inputFilePath };
+};
+
+const sendVoiceMessage = async (token, chatId, filePath) => {
     try {
         const url = `https://api.telegram.org/bot${token}/sendVoice?chat_id=${chatId}`;
         const formData = new FormData();
@@ -51,11 +59,18 @@ const convertToOgg = (inputFile, outputFile, callback) => {
         });
 };
 
-const fileExtension = path.extname(inputFilePath).toLowerCase();
-if (fileExtension === '.ogg') {
-    sendVoiceMessage(chatId, inputFilePath);
-} else {
-    convertToOgg(inputFilePath, outputFilePath, () => {
-        sendVoiceMessage(chatId, outputFilePath);
-    });
-}
+const main = async () => {
+    const { token, chatId, inputFilePath } = await getInput();
+    const outputFilePath = path.join(__dirname, 'audio.ogg');
+
+    const fileExtension = path.extname(inputFilePath).toLowerCase();
+    if (fileExtension === '.ogg') {
+        sendVoiceMessage(token, chatId, inputFilePath);
+    } else {
+        convertToOgg(inputFilePath, outputFilePath, () => {
+            sendVoiceMessage(token, chatId, outputFilePath);
+        });
+    }
+};
+
+main();
