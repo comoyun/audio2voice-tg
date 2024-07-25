@@ -1,6 +1,6 @@
 # audio2voice-tg
 
-Converts an audio file to OGG format and sends them as a voice message via a Telegram bot.
+Converts an audio file to OGG format and sends it as a voice message via a Telegram bot.
 
 <img src="https://github.com/user-attachments/assets/1c1eac35-0040-4ce0-8545-fb881b209d89" width="600">
 
