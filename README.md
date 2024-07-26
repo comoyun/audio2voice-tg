@@ -62,4 +62,4 @@ npm start 1234567890:AABBCCDDEEFF-0000 5321012345 audio.mp3
 ## Notes
 
 The script can be run interactively. For that, simply run `node index.js` and follow the prompts for bot token, chat ID, and audio file path.
-To have spectogram, the resulting file from conversion must be [no more than 1MB]([url](https://core.telegram.org/bots/api#inputfile)) in size. Otherwise, voice notes will be sent as files.
+To have a spectrogram, the resulting file from conversion must be [no more than 1MB]([url](https://core.telegram.org/bots/api#inputfile)) in size. Otherwise, voice notes will be sent as files.
